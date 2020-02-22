@@ -1,0 +1,57 @@
+program hw1
+   IMPLICIT none
+   INTEGER :: Lunker = 30, Loonter = 15, Little = 5, Pooney = 1
+   INTEGER :: LunkerCount = 0, LoonterCount = 0, LittleCount = 0, PooneyCount = 0
+   INTEGER :: userIn
+   INTEGER :: answer
+   INTEGER :: dateTime(8)
+
+   CALL DATE_AND_TIME(values=dateTime)
+   PRINT '(i0, 5(a4, i4))', dateTime(3), '/', dateTime(2), '/', dateTime(1), " ", &
+                              dateTime(5), ':', dateTime(6), ':', dateTime(7)
+  
+   READ *, userIn
+   
+   //Need to modify so that when an exact value is input it does not fail. Should be /=
+   IF(userIn < 0) THEN
+        PRINT*, "Input is negative, converting to positive..."
+        userIn = userIn*(-1)
+    END IF
+   
+    IF (userIn /= Lunker) THEN
+        LunkerCount = userIn/Lunker
+        answer = MOD(userIn, Lunker)
+        IF(LunkerCount .NE. 0) THEN
+            !PRINT *, LunkerCount, "Lunker"
+            WRITE(*,"(i4, 5(a8))", advance = 'no') LunkerCount, "Lunker"
+        END IF
+    END IF
+    
+    IF (answer /= Loonter) THEN
+        LoonterCount = answer/Loonter
+        answer = MOD(answer, Loonter)
+        IF(LoonterCount .NE. 0) THEN
+            !PRINT *, LoonterCount, "Loonter"
+            WRITE(*,"(i4, 5(a8))", advance = 'no') LoonterCount, "Loonter"
+        END IF
+    END IF
+    
+    IF (answer /= Little) THEN  
+        LittleCount = answer/Little
+        answer = MOD(answer, Little)
+        PooneyCount = answer
+        
+        IF(LittleCount .NE. 0) THEN
+            !PRINT *, LittleCount, "Little"
+            WRITE(*,"(i4, 5(a8))", advance = 'no') LittleCount, "Little"
+        ENDIF
+        
+        IF(PooneyCount .NE. 0) THEN   
+            !PRINT*, PooneyCount, "Pooney"
+            WRITE(*,"(i4, 5(a8))", advance = 'no') PooneyCount, "Pooney"
+        END IF
+    END IF
+    
+
+   
+end program hw1
