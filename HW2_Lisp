@@ -1,0 +1,37 @@
+;Lisp function that takes a list of characters and turns them into a flat atom list then recursively
+;tests if the head and tail are equivalent, if they are they get sent back into the function without
+;the head and tail that we just test equality between.
+(defun testPalindrome (list)
+    (cond
+        ((atom list))
+        ((not(equal(first list)(first(reverse list))))nil)
+        ;sortening the list by one char and then flipping it and taking off
+        ;the last char and then returning it back to
+        ;"Forward" postion
+        ((testPalindrome(reverse(cdr(reverse(cdr list))))))
+    )
+)
+
+
+;Test cases
+(write(testPalindrome '(a b a))) ;Pass
+(terpri)
+(write(testPalindrome '(p j k p))) ;Fail
+(terpri)
+(write(testPalindrome '(aa bb a))) ;Fail
+(terpri)
+(write(testPalindrome '(a (test) a))) ;Pass
+(terpri)
+(write(testPalindrome '(1 2 3 3 2 1))) ;Pass
+(terpri)
+(write(testPalindrome '(!! ?? !!))) ;Pass
+(terpri)
+(write(testPalindrome '(r a c e c a r))) ;Pass
+(terpri)
+(write(testPalindrome '(e l e p h a n t))) ;Fail
+(terpri)
+(write(testPalindrome '(l e v e l))) ;Pass
+(terpri)
+(write(testPalindrome '(a (yes) b (no) a))) ;Fail
+(terpri)
+(write(testPalindrome '(a (yes) c (yes) a))) ;Pass
